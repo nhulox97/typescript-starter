@@ -5,6 +5,8 @@
  * your code as well as contracts with code outside of your project.
  */
 
+import { CallTracker } from 'assert';
+
 // Basic example
 interface LabeledValue {
   label: string;
@@ -47,4 +49,38 @@ export function createSquare(
 // Using interfaces for functions
 export interface SearchFunc {
   (source: string, subString: string): boolean;
+}
+
+// indexeable types
+// TODO
+
+// Class types
+interface ClockInterface {
+  tick(): void;
+}
+
+interface ClockConstructor {
+  new (hour: number, minute: number): ClockInterface;
+}
+
+export class DigitalClock implements ClockInterface {
+  constructor(h: number, m: number) {}
+  tick(): void {
+    console.log('beep beep');
+  }
+}
+
+export class AnalogClock implements ClockInterface {
+  constructor(h: number, m: number) {}
+  tick(): void {
+    console.log('Tick tock');
+  }
+}
+
+export function createClock(
+  ctor: ClockConstructor,
+  hour: number,
+  minute: number
+): ClockInterface {
+  return new ctor(hour, minute);
 }

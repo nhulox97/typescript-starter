@@ -1,5 +1,9 @@
-import { SearchFunc } from './interfaces';
-
+import {
+  SearchFunc,
+  createClock,
+  DigitalClock,
+  AnalogClock
+} from './interfaces';
 
 // BEGIN INTERFACES REGION
 // const myObj = { size: 10, label: 'Size 10 Object' };
@@ -16,4 +20,9 @@ const mySearch: SearchFunc = function (src: string, sub: string): boolean {
 };
 
 console.log(mySearch('Hello world', 'world'));
+
+const digital = createClock(DigitalClock, 12, 17);
+digital.tick();
+const analog = createClock(AnalogClock, 7, 32);
+analog.tick();
 // END INTERFACES REGION
