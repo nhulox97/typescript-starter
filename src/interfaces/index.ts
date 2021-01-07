@@ -18,9 +18,10 @@ export function printLabel(labeledObj: LabeledValue): void {
 interface SquareConfig {
   color?: string;
   width?: number;
+  [propName: string]: unknown; // to avoid error when a different param is passed
 }
 
-export function createSquare(
+/*export function createSquare(
   config: SquareConfig
 ): { color: string; area: number } {
   const newSquare = { color: 'White', area: 100 };
@@ -32,4 +33,18 @@ export function createSquare(
   }
 
   return newSquare;
+}*/
+
+export function createSquare(
+  config: SquareConfig
+): { color: string; area: number } {
+  return {
+    color: config.color || 'red',
+    area: config.width ? config.width * config.width : 20
+  };
+}
+
+// Using interfaces for functions
+export interface SearchFunc {
+  (source: string, subString: string): boolean;
 }
